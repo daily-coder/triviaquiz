@@ -87,4 +87,4 @@ Follow the following steps to get development environment running.
 <br />
 
 Credits: 
-  Special thanks to [cssstats.com](https://cssstats.com/) for providing API.
+  Special thanks to [opentdb.com](https://opentdb.com/) for providing API.
