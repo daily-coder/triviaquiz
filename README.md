@@ -37,3 +37,22 @@ Type the following commands in the terminal to verify your node and npm versions
 node -v
 npm -v
 ```
+
+<br />
+
+
+### Install
+
+Follow the following steps to get development environment running.
+
+* Clone _'triviaquiz'_ repository from GitHub
+
+  ```bash
+  git clone https://github.com/daily-coder/triviaquiz.git
+  ```
+
+* Install node modules
+
+   ```bash
+   npm install
+   ```
