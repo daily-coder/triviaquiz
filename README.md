@@ -15,3 +15,25 @@ Have a look at the [demo](https://daily-coder.github.io/triviaquiz/) to see what
 * [jest](https://jestjs.io/) - A JavaScript Testing Framework
 * [Figma](https://www.figma.com/) - A collaborative interface design tool
 * [gh-pages](https://github.com/tschaub/gh-pages) - General purpose task for publishing files to a gh-pages branch on GitHub
+
+<br />
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+<br />
+
+### Prerequisites
+
+The following software is required to be installed on your system:
+
+* Node 8.x
+* Npm 3.x
+
+Type the following commands in the terminal to verify your node and npm versions
+
+```bash
+node -v
+npm -v
+```
