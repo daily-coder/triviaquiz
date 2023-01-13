@@ -14,9 +14,11 @@ Question.propTypes = {
 
 function Question({ question, options, selectOption, index, check }) {
   function findOptionStyles(check, value, isHeld, correctAnswer) {
-    const heldStyles = "bg-violet-light border-transparent dark:text-green-light dark:bg-grey";
+    const heldStyles =
+      "bg-violet-light border-transparent dark:text-green-light dark:bg-grey";
     const correctStyles = "bg-green-light border-transparent dark:text-dark";
-    const wrongStyles = "bg-pink-light border-transparent dark:text-dark dark:bg-red-300";
+    const wrongStyles =
+      "bg-pink-light border-transparent dark:text-dark dark:bg-red-300";
 
     if (!check && isHeld) {
       return heldStyles;

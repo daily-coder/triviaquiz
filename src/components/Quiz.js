@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 import Confetti from "react-confetti";
+import { v4 as uuidv4 } from "uuid";
+
 import decodeHTML from "../helper/decode/decode";
+
+import ConnectionError from "./ConnectionError";
+import Loading from "./Loading";
 import Question from "./Question";
 import QuizButton from "./QuizButton/QuizButton";
-import Loading from "./Loading";
-import ConnectionError from "./ConnectionError";
 
 function Quiz() {
   const [quizData, setQuizData] = useState([]);
@@ -26,6 +28,7 @@ function Quiz() {
       .catch((error) => {
         setIsLoading(false); // hide loading animation on failure
         setIsError(true);
+        // eslint-disable-next-line no-console
         console.log(error);
       });
   }, [resetQuiz]);
@@ -34,7 +37,10 @@ function Quiz() {
     return data.map((questionData) => {
       // sort options so that correctAnswer is not always the first one.
 
-      const allAnswers = [questionData.correct_answer, ...questionData.incorrect_answers].sort();
+      const allAnswers = [
+        questionData.correct_answer,
+        ...questionData.incorrect_answers,
+      ].sort();
 
       const options = allAnswers.map((answer) => ({
         id: uuidv4(),
@@ -108,7 +114,8 @@ function Quiz() {
   const total = quizData.length;
   const score = quizData.filter((questionData) =>
     questionData.options.some(
-      (option) => option.isHeld && option.value === questionData.question.correct_answer
+      (option) =>
+        option.isHeld && option.value === questionData.question.correct_answer
     )
   ).length;
 
@@ -123,7 +130,9 @@ function Quiz() {
           <div className="my-16 text-blue-dark dark:text-white">
             {questionElements}
             <div className="flex justify-center items-center mt-16">
-              <p className="mr-4 text-lg">{check && `Score: ${score}/${total}`}</p>
+              <p className="mr-4 text-lg">
+                {check && `Score: ${score}/${total}`}
+              </p>
 
               {!check ? (
                 <QuizButton text="Check Answers" handleClick={checkAnswers} />
