@@ -6,7 +6,9 @@ function Switch({ darkMode, toggleDarkMode }) {
         htmlFor="toggle-switch"
         onClick={toggleDarkMode}
       >
-        <span className="absolute -left-[9999px] -top-[9999px] bg-white">toggle dark mode</span>
+        <span className="absolute -left-[9999px] -top-[9999px] bg-white">
+          toggle dark mode
+        </span>
         <input
           className="absolute -left-[9999px] -top-[9999px]"
           name="toggle-switch"

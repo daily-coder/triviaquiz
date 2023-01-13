@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import StartPage from "./components/StartPage/StartPage";
+
 import Quiz from "./components/Quiz";
+import StartPage from "./components/StartPage/StartPage";
 import Switch from "./components/Switch";
 
 function App() {

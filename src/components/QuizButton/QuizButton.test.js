@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import QuizButton from "./QuizButton";
 
 const mockHideStartPage = jest.fn();

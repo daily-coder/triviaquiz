@@ -1,5 +1,5 @@
 import he from "he";
- 
+
 function getCopy(value, getValue) {
   if (value == null) {
     return value;
