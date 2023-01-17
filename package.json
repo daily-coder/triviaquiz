@@ -20,7 +20,8 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "prepare": "husky install",
-    "lint": "eslint . && prettier --check src/ ."
+    "lint": "eslint . && prettier --check src/ .",
+    "commit:test": "npm run test -- --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
