@@ -2,7 +2,7 @@
 
 A React quiz application that uses external API.
 
-Have a look at the [demo](https://daily-coder.github.io/triviaquiz/) to see what the app can do.
+Live demo: [https://daily-coder.github.io/triviaquiz/](https://daily-coder.github.io/triviaquiz/)
 
 <br />
 
