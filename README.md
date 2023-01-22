@@ -1,6 +1,6 @@
 # Quiz App
 
-A React quiz application that uses external API.
+A React quiz application created using [Open Trivia Database](https://opentdb.com/) API.
 
 Live demo: [https://daily-coder.github.io/triviaquiz/](https://daily-coder.github.io/triviaquiz/)
 
