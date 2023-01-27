@@ -30,6 +30,7 @@ Live demo: [https://daily-coder.github.io/triviaquiz/](https://daily-coder.githu
 - [React-confetti](https://github.com/alampros/react-confetti) - React confetti animation package.
 - [React-testing-library](https://testing-library.com) - Simple and complete testing utilities that encourage good testing practices.
 - [TailwindCSS](https://tailwindcss.com) - A utility first framework.
+- [TypeScript](https://www.typescriptlang.org/) - A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 - [Uuid](https://github.com/uuidjs/uuid) - A tool to generate unique ids.
 - [Gh-pages](https://github.com/tschaub/gh-pages) - General purpose task for publishing files to a gh-pages branch on GitHub.
 
