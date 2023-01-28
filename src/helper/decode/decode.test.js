@@ -28,7 +28,7 @@ describe("decodeHTML", function () {
     expect(typeof decodeHTML(2)).toBe("string");
     expect(typeof decodeHTML(true)).toBe("string");
     expect(typeof decodeHTML(Symbol())).toBe("string");
-    expect(typeof decodeHTML(function () {})).toBe("string");
+    expect(typeof decodeHTML(jest.fn())).toBe("string");
   });
 
   test("should return object when called with object", function () {
