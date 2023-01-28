@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     "react-app",
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:prettier/recommended",
   ],
@@ -17,6 +18,22 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
+  overrides: [
+    {
+      files: ["**/*.ts?(x)"],
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+
+        warnOnUnsupportedTypeScriptVersion: true,
+      },
+      plugins: ["@typescript-eslint"],
+    },
+  ],
   plugins: ["react"],
   rules: {
     "no-console": "warn",
