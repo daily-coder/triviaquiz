@@ -1,19 +1,34 @@
-import propTypes from "prop-types";
+interface Option {
+  id: string;
+  isHeld: boolean;
+  value: string;
+}
 
-Question.propTypes = {
-  question: propTypes.shape({
-    question: propTypes.string,
-    correct_answer: propTypes.string,
-    id: propTypes.string,
-  }),
-  options: propTypes.array,
-  selectOption: propTypes.func,
-  index: propTypes.number,
-  check: propTypes.bool,
-};
+interface QuestionProps {
+  question: {
+    question: string;
+    correct_answer: string;
+    id: string;
+  };
+  options: Option[];
+  selectOption(index: number, id: string): void;
+  index: number;
+  check: boolean;
+}
 
-function Question({ question, options, selectOption, index, check }) {
-  function findOptionStyles(check, value, isHeld, correctAnswer) {
+function Question({
+  question,
+  options,
+  selectOption,
+  index,
+  check,
+}: QuestionProps) {
+  function findOptionStyles(
+    check: boolean,
+    value: string,
+    isHeld: boolean,
+    correctAnswer: string
+  ) {
     const heldStyles =
       "bg-violet-light border-transparent dark:text-green-light dark:bg-grey";
     const correctStyles = "bg-green-light border-transparent dark:text-dark";
