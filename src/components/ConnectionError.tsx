@@ -1,6 +1,10 @@
 import QuizButton from "./QuizButton/QuizButton";
 
-function ConnectionError({ retryAPIRequest }) {
+interface ConnectionErrorProps {
+  retryAPIRequest(): void;
+}
+
+function ConnectionError({ retryAPIRequest }: ConnectionErrorProps) {
   return (
     <div className="flex flex-col items-center dark:text-white">
       <span className="mb-4">
