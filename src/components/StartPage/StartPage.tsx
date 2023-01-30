@@ -1,6 +1,10 @@
 import QuizButton from "../QuizButton/QuizButton";
 
-function StartPage({ hideStartPage }) {
+interface StartPageProps {
+  hideStartPage(): void;
+}
+
+function StartPage({ hideStartPage }: StartPageProps) {
   return (
     <div
       data-testid="start-page"
