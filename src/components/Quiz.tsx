@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import { v4 as uuidv4 } from "uuid";
 
 import decodeHTML from "../helper/decode/decode";
+import type {
+  Option,
+  OriginalQuestionData,
+  ModifiedQuestionData,
+} from "../types";
 
 import ConnectionError from "./ConnectionError";
 import Loading from "./Loading";
@@ -10,7 +15,7 @@ import Question from "./Question";
 import QuizButton from "./QuizButton/QuizButton";
 
 function Quiz() {
-  const [quizData, setQuizData] = useState([]);
+  const [quizData, setQuizData] = useState<ModifiedQuestionData[]>([]);
   const [check, setCheck] = useState(false);
   const [resetQuiz, setResetQuiz] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +26,7 @@ function Quiz() {
       .then((response) => response.json())
       .then((data) => {
         const decodedQuizData = decodeHTML(data.results);
-        setQuizData(createQuizData(decodedQuizData));
+        setQuizData(createQuizData(decodedQuizData as OriginalQuestionData[]));
         setIsLoading(false); // hide loading animation on success
         setIsError(false);
       })
@@ -33,8 +38,8 @@ function Quiz() {
       });
   }, [resetQuiz]);
 
-  function createQuizData(data) {
-    return data.map((questionData) => {
+  function createQuizData(data: OriginalQuestionData[]) {
+    return data.map((questionData: OriginalQuestionData) => {
       // sort options so that correctAnswer is not always the first one.
 
       const allAnswers = [
@@ -57,7 +62,7 @@ function Quiz() {
     });
   }
 
-  function toggleIsHeld(options, id) {
+  function toggleIsHeld(options: Option[], id: string) {
     return options.map((option) => {
       // only one option should contain isHeld: true
       return option.id === id
@@ -66,7 +71,7 @@ function Quiz() {
     });
   }
 
-  function selectOption(index, id) {
+  function selectOption(index: number, id: string) {
     if (check) {
       return;
     }
@@ -123,7 +128,7 @@ function Quiz() {
     <div className="max-w-2xl mx-auto px-4">
       <div className="my-3">
         {isError ? (
-          <ConnectionError text="Try Again" retryAPIRequest={retryAPIRequest} />
+          <ConnectionError retryAPIRequest={retryAPIRequest} />
         ) : isLoading ? (
           <Loading />
         ) : (
