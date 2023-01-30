@@ -1,8 +1,4 @@
-interface Option {
-  id: string;
-  isHeld: boolean;
-  value: string;
-}
+import type { Option } from "../types";
 
 interface QuestionProps {
   question: {
