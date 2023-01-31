@@ -1,10 +1,14 @@
-function Switch({ darkMode, toggleDarkMode }) {
+interface SwitchProps {
+  darkMode: boolean;
+  toggleDarkMode(): void;
+}
+
+function Switch({ darkMode, toggleDarkMode }: SwitchProps) {
   return (
     <div className="absolute top-0 right-0 m-4">
       <label
         className="toggle-switch-js flex rounded-full w-[3rem] bg-blue-dark cursor-pointer focus:ring-2"
         htmlFor="toggle-switch"
-        onClick={toggleDarkMode}
       >
         <span className="absolute -left-[9999px] -top-[9999px] bg-white">
           toggle dark mode
@@ -14,6 +18,7 @@ function Switch({ darkMode, toggleDarkMode }) {
           name="toggle-switch"
           id="toggle-switch"
           type="checkbox"
+          onChange={toggleDarkMode}
         />
         <span
           className={`${
