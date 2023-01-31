@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Quiz from "./components/Quiz";
 import StartPage from "./components/StartPage/StartPage";
 import Switch from "./components/Switch";
+import { loadState, saveState } from "./helper/localStorage";
 
 function App() {
   const [showStartPage, setShowStartPage] = useState(true);
-  const [darkMode, setDarkMode] = useState(() => {
-    return JSON.parse(localStorage.getItem("theme")) || false;
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    return loadState("theme") || false;
   });
 
   useEffect(() => {
@@ -17,15 +18,11 @@ function App() {
       document.documentElement.classList.remove("dark");
     }
 
-    localStorage.setItem("theme", JSON.stringify(darkMode));
+    saveState("theme", darkMode);
   }, [darkMode]);
 
-  function toggleDarkMode(ev) {
-    // event attached to label  will also fire for input element.
-
-    if (ev.target.type !== "checkbox") {
-      setDarkMode((prevDarkMode) => !prevDarkMode);
-    }
+  function toggleDarkMode() {
+    setDarkMode((prevDarkMode) => !prevDarkMode);
   }
 
   function hideStartPage() {
