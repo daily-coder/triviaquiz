@@ -21,3 +21,17 @@ test("retrieve data from localStorage", () => {
 
   expect(loadState(key)).toBe(value);
 });
+
+test("return undefined if there is an error while retrieving", () => {
+  const key = "token";
+  const value = Math.random();
+  saveState(key, value);
+  const temp = localStorage;
+
+  // error occurs because localStorage is not defined
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  delete window.localStorage;
+  expect(loadState(key)).toBeUndefined();
+  window.localStorage = temp;
+});
