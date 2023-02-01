@@ -18,21 +18,27 @@ function Quiz() {
   const [quizData, setQuizData] = useState<ModifiedQuestionData[]>([]);
   const [check, setCheck] = useState(false);
   const [resetQuiz, setResetQuiz] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [status, setStatus] = useState<"pending" | "resolved" | "rejected">(
+    "pending"
+  );
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&category=18&type=multiple")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch data from https://opentdb.com, response: ${response}`
+          );
+        }
+        return response.json();
+      })
       .then((data) => {
         const decodedQuizData = decodeHTML(data.results);
         setQuizData(createQuizData(decodedQuizData as OriginalQuestionData[]));
-        setIsLoading(false); // hide loading animation on success
-        setIsError(false);
+        setStatus("resolved");
       })
       .catch((error) => {
-        setIsLoading(false); // hide loading animation on failure
-        setIsError(true);
+        setStatus("rejected");
         // eslint-disable-next-line no-console
         console.log(error);
       });
@@ -95,12 +101,11 @@ function Quiz() {
   function resetQuizData() {
     setCheck(false);
     setResetQuiz((prevCount) => prevCount + 1);
-    setIsLoading(true);
+    setStatus("pending");
   }
 
   function retryAPIRequest() {
-    setIsLoading(true);
-    setIsError(false);
+    setStatus("pending");
     setResetQuiz((prevReset) => prevReset + 1);
   }
 
@@ -127,9 +132,9 @@ function Quiz() {
   return (
     <div className="max-w-2xl mx-auto px-4">
       <div className="my-3">
-        {isError ? (
+        {status === "rejected" ? (
           <ConnectionError retryAPIRequest={retryAPIRequest} />
-        ) : isLoading ? (
+        ) : status === "pending" ? (
           <Loading />
         ) : (
           <div className="my-16 text-blue-dark dark:text-white">
