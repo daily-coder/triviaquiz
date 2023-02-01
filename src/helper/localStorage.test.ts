@@ -1,4 +1,4 @@
-import { saveState } from "./localStorage";
+import { loadState, saveState } from "./localStorage";
 
 beforeEach(() => localStorage.clear());
 
@@ -12,4 +12,12 @@ test("store data in localStorage", () => {
     throw new Error("Failed to store data in localStorage");
   }
   expect(JSON.parse(serializedData)).toBe(value);
+});
+
+test("retrieve data from localStorage", () => {
+  const key = "token";
+  const value = Math.random();
+  saveState(key, value);
+
+  expect(loadState(key)).toBe(value);
 });
