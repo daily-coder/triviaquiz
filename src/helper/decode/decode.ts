@@ -1,23 +1,30 @@
-import he, { Decode } from "he";
+import he from "he";
 
-function getCopy(value: unknown, getValue: Decode) {
-  if (value == null) {
-    return value;
-  } else if (typeof value !== "object") {
-    return getValue(String(value)); // convert non-string values to strings
-  } else {
-    const keys = Object.keys(value);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const copy: Record<string, any> = Array.isArray(value) ? [] : {};
-    for (const key of keys) {
-      copy[key] = getCopy(value[key as keyof typeof value], getValue);
-    }
-    return copy;
+function deepCopy<T>(
+  value: T,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callback: <K = T>(arg: K) => any = (arg) => arg
+): T {
+  if (value == null || typeof value !== "object") {
+    return callback(value);
   }
+
+  const keys = Object.keys(value) as (keyof T)[];
+  const copy = (Array.isArray(value) ? [] : {}) as T;
+  for (const key of keys) {
+    copy[key] = deepCopy(value[key], callback);
+  }
+  return copy;
 }
 
-function decodeHTML(obj: unknown) {
-  return getCopy(obj, he.decode);
+function decodeHTML(value: unknown) {
+  function getValue(value: unknown) {
+    if (typeof value === "object" || value == null) {
+      return value;
+    }
+    return he.decode(String(value));
+  }
+  return deepCopy(value, getValue);
 }
 
 export default decodeHTML;
