@@ -1,6 +1,8 @@
 import { loadState, saveState } from "./localStorage";
 
+const temp = window.localStorage;
 beforeEach(() => localStorage.clear());
+afterEach(() => (window.localStorage = temp));
 
 test("store data in localStorage", () => {
   const key = "token";
@@ -26,12 +28,10 @@ test("return undefined if there is an error while retrieving", () => {
   const key = "token";
   const value = Math.random();
   saveState(key, value);
-  const temp = localStorage;
 
-  // error occurs because localStorage is not defined
+  // create an error by deleting localStorage
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   delete window.localStorage;
   expect(loadState(key)).toBeUndefined();
-  window.localStorage = temp;
 });
