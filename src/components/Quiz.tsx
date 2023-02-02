@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import { v4 as uuidv4 } from "uuid";
 
-import decodeHTML from "../helper/decode/decode";
+import decodeHTML from "../helper/decode";
 import type {
   Option,
   OriginalQuestionData,
@@ -12,7 +12,7 @@ import type {
 import ConnectionError from "./ConnectionError";
 import Loading from "./Loading";
 import Question from "./Question";
-import QuizButton from "./QuizButton/QuizButton";
+import QuizButton from "./QuizButton";
 
 function Quiz() {
   const [quizData, setQuizData] = useState<ModifiedQuestionData[]>([]);

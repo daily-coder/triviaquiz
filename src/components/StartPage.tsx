@@ -1,4 +1,4 @@
-import QuizButton from "../QuizButton/QuizButton";
+import QuizButton from "./QuizButton";
 
 interface StartPageProps {
   hideStartPage(): void;
